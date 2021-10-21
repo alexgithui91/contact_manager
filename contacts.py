@@ -7,22 +7,22 @@ DB_FILE = "db_contacts.db"
 
 def create_contact():
     """[summary]"""
-    pass
+    print("Your are in create function")
 
 
 def retrieve_contact():
     """[summary]"""
-    pass
+    print("Your are in retrieve function")
 
 
 def update_contact():
     """[summary]"""
-    pass
+    print("Your are in update function")
 
 
 def delete_contact():
     """[summary]"""
-    pass
+    print("Your are in delete function")
 
 
 def main():
@@ -51,13 +51,13 @@ def main():
                 print("Contacts Book CLOSED...")
                 sys.exit()
             elif int(selection) == 1:
-                print("go to create contact")
+                create_contact()
             elif int(selection) == 2:
-                print("go to retrieve contact")
+                retrieve_contact()
             elif int(selection) == 3:
-                print("go to update contact")
+                update_contact()
             elif int(selection) == 4:
-                print("go to delete contact")
+                delete_contact()
         else:
             print("Error: Selection Out of Range")
     else:
