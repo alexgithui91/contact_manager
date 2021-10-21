@@ -5,6 +5,22 @@ import sys
 DB_FILE = "db_contacts.db"
 
 
+def create_db():
+    conn = sqlite3.connect(DB_FILE)
+    conn.execute(
+        """
+        CREATE TABLE contacts_list (
+            contact_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            f_name TEXT NOT NULL,
+            l_name TEXT,
+            phone_number INTEGER NOT NULL,
+            email TEXT
+        );
+        """
+    )
+    conn.close()
+
+
 def create_contact():
     """[summary]"""
     print("Your are in create function")
@@ -65,4 +81,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    create_db()
