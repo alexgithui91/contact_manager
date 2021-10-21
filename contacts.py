@@ -1,5 +1,32 @@
 import sqlite3
 
-conn = sqlite3.connect("db_contacts.db")
+DB_FILE = "db_contacts.db"
 
-print("DB opened successfully")
+
+def create_contact():
+    """[summary]"""
+    pass
+
+
+def retrieve_contact():
+    """[summary]"""
+    pass
+
+
+def update_contact():
+    """[summary]"""
+    pass
+
+
+def delete_contact():
+    """[summary]"""
+    pass
+
+
+def main():
+    """[summary]"""
+    pass
+
+
+if __name__ == "__main__":
+    main()
