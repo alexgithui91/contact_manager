@@ -23,12 +23,35 @@ def create_db():
 
 def create_contact():
     """[summary]"""
-    print("Your are in create function")
+    f_name = input("Enter First Name: ")
+    l_name = input("Enter Last Name: ")
+    phone_number = input("Enter Phonenumber: ")
+    email = input("Enter Email: ")
+
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        conn.execute(
+            "INSERT INTO contacts_list (f_name, l_name, phone_number, email) VALUES (?,?,?,?)",
+            (f_name, l_name, phone_number, email),
+        )
+        conn.commit()
+        conn.close()
+    except sqlite3.Error as er:
+        print("Error: ", er)
+
+    retrieve_contact()
 
 
 def retrieve_contact():
     """[summary]"""
-    print("Your are in retrieve function")
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cur = conn.execute("SELECT * FROM contacts_list")
+        for row in cur:
+            print(row)
+        conn.close()
+    except sqlite3.Error as er:
+        print("Error: ", er)
 
 
 def update_contact():
