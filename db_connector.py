@@ -15,4 +15,4 @@ def connect():
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
-    return cur
+    return conn, cur
