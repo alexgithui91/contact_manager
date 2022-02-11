@@ -3,11 +3,32 @@ import time
 import sys
 from db_connector import connect
 
-# This should check if ContactsManager DB exists. If not create it
-# This should check if Contacts Table exists. If not create it
+
 def initiate_db():
-    conn = connect()
-    print(conn)
+    conn, cur = connect()
+
+    cur.execute(
+        "SELECT EXISTS(SELECT * FROM information_schema.tables WHERE table_name='tbl_contacts')"
+    )
+
+    result = cur.fetchone()[0]
+
+    if result:
+        pass
+    else:
+        cur.execute(
+            """
+                CREATE TABLE tbl_contacts(
+                contact_key SERIAL PRIMARY KEY,
+                first_name TEXT,
+                last_name TEXT,
+                phonenumber TEXT,
+                email TEXT	
+                );
+            """
+        )
+        cur.close()
+        conn.commit()
 
 
 def create_contact():
