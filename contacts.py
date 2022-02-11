@@ -4,21 +4,11 @@ import sys
 
 DB_FILE = "db_contacts.db"
 
-
+# This should check if ContactsManager DB exists. If not create it
+# This should check if Contacts Table exists. If not create it
 def create_db():
-    conn = sqlite3.connect(DB_FILE)
-    conn.execute(
-        """
-        CREATE TABLE contacts_list (
-            contact_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            f_name TEXT NOT NULL,
-            l_name TEXT,
-            phone_number INTEGER NOT NULL,
-            email TEXT
-        );
-        """
-    )
-    conn.close()
+    """[summary]"""
+    pass
 
 
 def create_contact():
