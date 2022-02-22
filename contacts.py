@@ -29,6 +29,7 @@ def initiate_db():
         )
         cur.close()
         conn.commit()
+        print("Contacts table created.")
 
 
 def create_contact():
