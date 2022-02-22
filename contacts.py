@@ -1,10 +1,14 @@
 import sqlite3
 import time
 import sys
+import os.path
+import psycopg2
+from os import path
 from db_connector import connect
 
 
 def initiate_db():
+    """[summary]"""
     conn, cur = connect()
 
     cur.execute(
@@ -27,14 +31,22 @@ def initiate_db():
                 );
             """
         )
-        cur.close()
         conn.commit()
         print("Contacts table created.")
 
 
 def create_contact():
     """[summary]"""
-    print("You are in create function")
+    if path.exists("contacts_file.csv"):
+        conn, cur = connect()
+
+        sql_query = "COPY tbl_contacts(first_name,last_name,phonenumber,email) FROM '\contacts_file.csv' DELIMITER ',' CSV HEADER;"
+
+        cur.execute(sql_query)
+
+        conn.commit()
+    else:
+        print("Contact File Not Found.")
 
 
 def retrieve_contact():
@@ -54,6 +66,7 @@ def delete_contact():
 
 def main():
     initiate_db()
+    create_contact()
 
 
 if __name__ == "__main__":
