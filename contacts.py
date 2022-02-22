@@ -14,7 +14,7 @@ def initiate_db():
     result = cur.fetchone()[0]
 
     if result:
-        pass
+        print("Contacts table exists.")
     else:
         cur.execute(
             """
