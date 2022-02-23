@@ -3,6 +3,7 @@ import time
 import sys
 import os.path
 import psycopg2
+import csv
 from os import path
 from db_connector import connect
 
@@ -40,11 +41,14 @@ def create_contact():
     if path.exists("contacts_file.csv"):
         conn, cur = connect()
 
-        sql_query = "COPY tbl_contacts(first_name,last_name,phonenumber,email) FROM '\contacts_file.csv' DELIMITER ',' CSV HEADER;"
+        sql_insert = """INSERT INTO tbl_contacts(first_name,last_name,phonenumber,email) VALUES(%s, %s, %s, %s)"""
 
-        cur.execute(sql_query)
-
-        conn.commit()
+        with open("contacts_file.csv", "r") as f:
+            reader = csv.reader(f)
+            next(reader)  # Skips header.
+            for record in reader:
+                cur.execute(sql_insert, record)
+                conn.commit()
     else:
         print("Contact File Not Found.")
 
