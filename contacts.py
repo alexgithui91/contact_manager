@@ -49,6 +49,8 @@ def create_contact():
             for record in reader:
                 cur.execute(sql_insert, record)
                 conn.commit()
+
+        print("Records added.")
     else:
         print("Contact File Not Found.")
 
